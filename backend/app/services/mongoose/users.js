@@ -76,10 +76,19 @@ const deleteUsers = async (req) => {
   return result;
 };
 
+const checkingUsers = async (id) => {
+  const result = await Users.findOne({ _id: id });
+
+  if (!result) throw new NotFoundError(`Tidak ada user dengan id :  ${id}`);
+
+  return result;
+};
+
 module.exports = {
   createUsers,
   getAllUsers,
   getOneUsers,
   updateUsers,
   deleteUsers,
+  checkingUsers,
 };

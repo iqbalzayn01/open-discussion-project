@@ -1,17 +1,16 @@
-// import services Threads
+// import services Comments
 const {
-  createThreads,
-  getAllThreads,
-  getOneThreads,
-  updateThreads,
-  deleteThreads,
-} = require('../../../services/mongoose/threads');
+  createComments,
+  getAllComments,
+  updateComments,
+  deleteComments,
+} = require('../../../services/mongoose/comments');
 
 const { StatusCodes } = require('http-status-codes');
 
 const create = async (req, res, next) => {
   try {
-    const result = await createThreads(req);
+    const result = await createComments(req);
 
     res.status(StatusCodes.CREATED).json({
       data: result,
@@ -23,19 +22,7 @@ const create = async (req, res, next) => {
 
 const index = async (req, res, next) => {
   try {
-    const result = await getAllThreads(req);
-
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const find = async (req, res, next) => {
-  try {
-    const result = await getOneThreads(req);
+    const result = await getAllComments(req);
 
     res.status(StatusCodes.OK).json({
       data: result,
@@ -47,7 +34,7 @@ const find = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const result = await updateThreads(req);
+    const result = await updateComments(req);
 
     res.status(StatusCodes.OK).json({
       data: result,
@@ -59,7 +46,7 @@ const update = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    const result = await deleteThreads(req);
+    const result = await deleteComments(req);
 
     res.status(StatusCodes.OK).json({
       data: result,
@@ -71,7 +58,6 @@ const destroy = async (req, res, next) => {
 
 module.exports = {
   index,
-  find,
   update,
   destroy,
   create,
